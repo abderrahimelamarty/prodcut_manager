@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import metier.entities.Produit;
@@ -39,7 +40,28 @@ public class ProduitDaoImpl implements IProduitDao {
 
 	@Override
 	public List<Produit> ProduitsParMC(String mc) {
-		// TODO Auto-generated method stub
+		List<Produit> produits=new ArrayList<Produit>();
+		Connection connection=SingletonConnection.getConnection();
+		try {
+			PreparedStatement ps =connection.prepareStatement
+					("SELECT * FROM PRODUITS WHERE DESIGNATION LIKE ?");
+			ps.setString(1, mc);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				Produit p=new Produit();
+				p.setId(rs.getLong("ID"));
+				p.setDesignation(rs.getString("DESIGNATION"));
+				p.setPrix(rs.getLong("PRIX"));
+				p.setQuantite(rs.getLong("QUANTITE"));
+				produits.add(p);
+			}
+			return produits;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		return null;
 	}
 
