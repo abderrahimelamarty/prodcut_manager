@@ -79,7 +79,23 @@ public class ProduitDaoImpl implements IProduitDao {
 
 	@Override
 	public void deleteProduit(Long id) {
-		// TODO Auto-generated method stub
+		Connection connection=SingletonConnection.getConnection();
+		try {
+			PreparedStatement ps =connection.prepareStatement
+					("DELETE FROM PRODUITS where id=? ");
+		    ps.setLong(1, id);
+			ps.executeUpdate();
+			ps.close();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	
+		
 		
 	}
 	
