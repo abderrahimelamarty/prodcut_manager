@@ -5,6 +5,7 @@
 <meta charset="ISO-8859-1">
 <!-- CSS only -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
 
 <title>Produits</title>
 </head>
@@ -32,7 +33,7 @@
      <td>${p.designation}</td>
      <td>${p.prix} DH</td>
      <td>${p.quantite}</td>
-      <td><a href="delete.do?id=${p.id }">delete <span class="glyphicon glyphicon-trash"></span></a></td>
+      <td><a  onclick="return confirm('Etes vous sur ?')" href="delete.do?id=${p.id }">delete <span class="glyphicon glyphicon-trash"></span></a></td>
       <td><a href="update.do?id=${p.id }">update <span class="glyphicon glyphicon-pencil"></span></a></td>
       
      

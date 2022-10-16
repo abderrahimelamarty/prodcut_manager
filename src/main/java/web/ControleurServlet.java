@@ -26,6 +26,7 @@ public class ControleurServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse responce) throws ServletException, IOException {
 		String path=request.getServletPath();
 		if(path.equals("/index.do")){
+	
 			request.getRequestDispatcher("produits.jsp").forward(request, responce);
 
 		}
