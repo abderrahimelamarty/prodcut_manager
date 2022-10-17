@@ -34,7 +34,7 @@
      <td>${p.prix} DH</td>
      <td>${p.quantite}</td>
       <td><a  onclick="return confirm('Etes vous sur ?')" href="delete.do?id=${p.id }">delete <span class="glyphicon glyphicon-trash"></span></a></td>
-      <td><a href="update.do?id=${p.id }">update <span class="glyphicon glyphicon-pencil"></span></a></td>
+      <td><a href="edit.do?id=${p.id }">update <span class="glyphicon glyphicon-pencil"></span></a></td>
       
      
      </tr>

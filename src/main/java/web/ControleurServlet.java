@@ -26,7 +26,7 @@ public class ControleurServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse responce) throws ServletException, IOException {
 		String path=request.getServletPath();
 		if(path.equals("/index.do")){
-	
+			System.out.print("hhhhh");
 			request.getRequestDispatcher("produits.jsp").forward(request, responce);
 
 		}
@@ -57,11 +57,33 @@ public class ControleurServlet extends HttpServlet {
 
 			
 		}
+		else if(path.equals("/editProduct.do") &&(request.getMethod().equals("POST"))) {
+			Long id=Long.parseLong(request.getParameter("id"));
+			String ds=request.getParameter("Designation");
+		    Long prix= Long.parseLong(request.getParameter("Prix"));
+			Long quantite= Long.parseLong(request.getParameter("Quantite"));
+
+			Produit p=new Produit(ds,prix,quantite);
+			p.setId(id);
+			metier.update(p);
+			request.setAttribute("produit", p);
+			request.getRequestDispatcher("Confirmation.jsp").forward(request, responce);	
+
+		
+
+			
+		}
 		else if(path.equals("/delete.do")){
 			Long id=Long.parseLong(request.getParameter("id"));
 			metier.deleteProduit(id);
 			//request.getRequestDispatcher("produits.jsp").forward(request, responce);	
-			responce.sendRedirect("chercher.do?motCle= ");
+			responce.sendRedirect("chercher.do?motCle= ");	
+		}
+		else if(path.equals("/edit.do")){
+			Long id=Long.parseLong(request.getParameter("id"));
+			Produit p=metier.getProduit(id);
+			request.setAttribute("produit",p);
+			request.getRequestDispatcher("editProduct.jsp").forward(request, responce);	
 
 			
 			
